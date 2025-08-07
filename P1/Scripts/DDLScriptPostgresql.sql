@@ -21,6 +21,8 @@ CREATE TABLE "public"."Publicacion_Etiquetas" (
 
 CREATE TABLE "public"."Usuarios" (
     "id" SERIAL,
+    "nombre" varchar(50) NOT NULL,
+    "apellido" varchar(50) NOT NULL,
     "nombre_usuario" varchar(50) NOT NULL UNIQUE,
     "email" varchar(100) NOT NULL UNIQUE,
     "hash_contrasena" varchar(255) NOT NULL,
