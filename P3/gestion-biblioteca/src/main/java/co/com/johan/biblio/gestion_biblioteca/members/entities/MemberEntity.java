@@ -1,4 +1,4 @@
-package co.com.johan.biblio.gestion_biblioteca.books.entities;
+package co.com.johan.biblio.gestion_biblioteca.members.entities;
 
 import java.time.LocalDate;
 
@@ -17,45 +17,38 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "libros")
+@Table(name = "miembros")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class BookEntity {
+public class MemberEntity {
 
     @Id
     @Column(name = "id")
-    private Long id;
+    Long id;
 
-    @Column(name = "secursal_id")
-    private Long branchId;
-
-    @Column(name = "titulo")
-    private String title;
-
-    @Column(name = "autor")
-    private String author;
-
-    @Column(name = "ano_publicacion")
-    private Long releaseYear;
-
-    @Column(name = "genero")
-    private String genre;
-
-    @Column(name="cantidad_total")
-    private Long totalAmount;
-
-    @Column(name="cantidad_disponible")
-    private Long availableAmount;
-
+    @Column(name="nombre")
+    String name;
+    
+    @Column(name="email")
+    String email;
+    
+    @Column(name="telefono")
+    String phone;
+    
+    @Column(name="hash_contrasenia")
+    String password;
+    
     @Column(name="fecha_registro")
     @CreatedDate
-    private LocalDate registerDate;
+    private LocalDate signUpDate;
 
     @Column(name ="fecha_actualizacion")
     @LastModifiedDate
     private LocalDate updateDate;
-    
+
+
+
 }
