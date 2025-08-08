@@ -1,0 +1,21 @@
+
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: johan
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: blog_platform 
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts:/docker-entrypoint-initdb.d/
+    command: ["-c", "log_statement=all"] 
+
+volumes:
+  postgres_data:
+    driver: local
