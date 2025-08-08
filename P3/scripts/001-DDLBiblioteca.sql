@@ -58,21 +58,21 @@ CREATE TABLE public.libros (
 -- Tabla de union para asignar roles a los miembros.
 CREATE TABLE public.roles_miembros (
     id BIGSERIAL PRIMARY KEY,
-    id_miembro BIGINT NOT NULL,
-    id_rol INT NOT NULL,
+    miembro_id BIGINT NOT NULL,
+    rol_id INT NOT NULL,
 
     CONSTRAINT fk_miembro
-        FOREIGN KEY(id_miembro)
+        FOREIGN KEY(miembro_id)
         REFERENCES public.miembros(id)
         ON DELETE CASCADE, -- Si se borra un miembro, sus roles se eliminan.
 
     CONSTRAINT fk_rol
-        FOREIGN KEY(id_rol)
+        FOREIGN KEY(rol_id)
         REFERENCES public.roles(id)
         ON DELETE CASCADE, -- Si se borra un rol, se quita de todos los miembros.
 
     -- Restricción para asegurar que un miembro no tenga el mismo rol dos veces.
-    UNIQUE (id_miembro, id_rol)
+    UNIQUE (miembro_id, rol_id)
 );
 
 -- Tabla para gestionar los préstamos de libros a miembros.
