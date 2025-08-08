@@ -1,5 +1,5 @@
 -- ========= CREACIÓN DE TIPOS PERSONALIZADOS (ENUMS) =========
--- Se crea un tipo ENUM para manejar los estados de los préstamos de forma controlada.
+-- Se crea un tipo ENUM para manejar los estados de los prestamos de forma controlada.
 CREATE TYPE public.estado_prestamo AS ENUM ('Prestado', 'Devuelto', 'Atrasado');
 
 
@@ -53,9 +53,9 @@ CREATE TABLE public.libros (
 );
 
 
--- ========= CREACIÓN DE TABLAS DE UNIÓN (MUCHOS A MUCHOS) =========
+-- ========= CREACIÓN DE TABLAS DE UNION (MUCHOS A MUCHOS) =========
 
--- Tabla de unión para asignar roles a los miembros.
+-- Tabla de union para asignar roles a los miembros.
 CREATE TABLE public.roles_miembros (
     id BIGSERIAL PRIMARY KEY,
     id_miembro BIGINT NOT NULL,
