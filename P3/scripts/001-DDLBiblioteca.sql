@@ -5,21 +5,22 @@ CREATE TYPE public.estado_prestamo AS ENUM ('Prestado', 'Devuelto', 'Atrasado');
 
 -- ========= CREACIÓN DE TABLAS PRINCIPALES (SIN DEPENDENCIAS) =========
 
--- Tabla para almacenar las sucursales de la biblioteca.
+
 CREATE TABLE public.sucursales (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL UNIQUE,
     direccion TEXT
 );
 
--- Tabla para definir los roles de los usuarios (ej. Administrador, Miembro).
+
 CREATE TABLE public.roles (
     id SERIAL PRIMARY KEY,
     nombre_rol VARCHAR(50) NOT NULL,
-    descripcion_rol VARCHAR(300)
+    descripcion_rol VARCHAR(300),
+    UNIQUE (nombre_rol)
 );
 
--- Tabla para almacenar la información de los miembros de la biblioteca.
+
 CREATE TABLE public.miembros (
     id BIGSERIAL PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
@@ -31,9 +32,9 @@ CREATE TABLE public.miembros (
 );
 
 
--- ========= CREACIÓN DE TABLAS DEPENDIENTES =========
+-- ========= CREACION DE TABLAS DEPENDIENTES =========
 
--- Tabla para el catálogo de libros, depende de 'sucursales'.
+
 CREATE TABLE public.libros (
     id BIGSERIAL PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
@@ -49,13 +50,13 @@ CREATE TABLE public.libros (
     CONSTRAINT fk_sucursal
         FOREIGN KEY(sucursal_id)
         REFERENCES public.sucursales(id)
-        ON DELETE SET NULL -- Si se borra una sucursal, el libro queda sin asignación.
+        ON DELETE SET NULL 
 );
 
 
--- ========= CREACIÓN DE TABLAS DE UNION (MUCHOS A MUCHOS) =========
+-- ========= CREACION DE TABLAS DE UNION (MUCHOS A MUCHOS) =========
 
--- Tabla de union para asignar roles a los miembros.
+
 CREATE TABLE public.roles_miembros (
     id BIGSERIAL PRIMARY KEY,
     miembro_id BIGINT NOT NULL,
@@ -64,14 +65,14 @@ CREATE TABLE public.roles_miembros (
     CONSTRAINT fk_miembro
         FOREIGN KEY(miembro_id)
         REFERENCES public.miembros(id)
-        ON DELETE CASCADE, -- Si se borra un miembro, sus roles se eliminan.
+        ON DELETE CASCADE, 
 
     CONSTRAINT fk_rol
         FOREIGN KEY(rol_id)
         REFERENCES public.roles(id)
-        ON DELETE CASCADE, -- Si se borra un rol, se quita de todos los miembros.
+        ON DELETE CASCADE, 
 
-    -- Restricción para asegurar que un miembro no tenga el mismo rol dos veces.
+
     UNIQUE (miembro_id, rol_id)
 );
 
@@ -88,10 +89,10 @@ CREATE TABLE public.prestamos (
     CONSTRAINT fk_libro
         FOREIGN KEY(libro_id)
         REFERENCES public.libros(id)
-        ON DELETE RESTRICT, -- No permitir borrar un libro si tiene préstamos activos.
+        ON DELETE RESTRICT, 
 
     CONSTRAINT fk_miembro
         FOREIGN KEY(miembro_id)
         REFERENCES public.miembros(id)
-        ON DELETE RESTRICT -- No permitir borrar un miembro si tiene préstamos activos.
+        ON DELETE RESTRICT 
 );
