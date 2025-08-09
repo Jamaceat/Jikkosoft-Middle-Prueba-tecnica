@@ -1,5 +1,7 @@
 package co.com.johan.biblio.gestion_biblioteca.loans.entities;
 
+import java.time.LocalDate;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
@@ -21,7 +23,8 @@ import lombok.Setter;
 @EntityListeners(AuditingEntityListener.class)
 public class LoansEntity {
 
-    @Id    @Column(name = "id")
+    @Id    
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "libro_id")
@@ -29,5 +32,18 @@ public class LoansEntity {
 
     @Column(name = "miembro_id")
     private Long memberId;
+
+    @Column(name = "fecha_prestamo")
+    private LocalDate loanDate;
+
+    @Column(name = "fecha_devolucion_esperada")
+    private LocalDate expectedReturnDate;
+
+    @Column(name = "fecha_devolucion_real")
+    private LocalDate actualReturnDate;
+
+    @Column(name = "estado")
+    private String state;
+    
 
 }
