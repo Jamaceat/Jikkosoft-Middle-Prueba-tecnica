@@ -17,7 +17,7 @@ import co.com.johan.biblio.gestion_biblioteca.members.entities.MemberEntity;
 import co.com.johan.biblio.gestion_biblioteca.members.entities.RoleEntity;
 import co.com.johan.biblio.gestion_biblioteca.members.repository.RoleRepository;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {RoleRepository.class})
 public abstract class MemberMapper {
     
     @Autowired

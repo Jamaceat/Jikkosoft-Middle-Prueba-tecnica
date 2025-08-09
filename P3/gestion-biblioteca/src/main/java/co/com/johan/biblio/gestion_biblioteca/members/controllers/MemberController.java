@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
+import co.com.johan.biblio.gestion_biblioteca.dtos.response.Response;
+import co.com.johan.biblio.gestion_biblioteca.members.dtos.request.LoginRequestR;
 import co.com.johan.biblio.gestion_biblioteca.members.dtos.request.RegisterMemberR;
 import co.com.johan.biblio.gestion_biblioteca.members.entities.MemberEntity;
 import co.com.johan.biblio.gestion_biblioteca.members.services.MemberService;
@@ -25,12 +28,18 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<Object> registerMember(@RequestBody RegisterMemberR memberRequest) {
+    public ResponseEntity<GeneralResponse> registerMember(@RequestBody RegisterMemberR memberRequest) {
         MemberEntity member=  memberService.registerMember(memberRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(member);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Response<>(member,HttpStatus.CREATED.toString(),"Miembro creado exitosamente"));
     }
     
+    @PostMapping("/login")
+    public ResponseEntity<GeneralResponse> memberLogin(@RequestBody LoginRequestR loginRequest) {
 
+        String jwt= memberService.login(loginRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(new Response<>(jwt,HttpStatus.OK.toString(),"Miembro logueado exitosamente"));
+    }
+    
 
 
 

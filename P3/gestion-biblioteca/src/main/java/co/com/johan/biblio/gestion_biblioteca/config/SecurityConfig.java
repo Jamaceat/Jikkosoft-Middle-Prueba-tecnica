@@ -3,6 +3,8 @@ package co.com.johan.biblio.gestion_biblioteca.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
@@ -48,6 +50,13 @@ public class SecurityConfig {
     @Bean
     GrantedAuthorityDefaults grantedAuthorityDefaults(SecurityConstants securityConstants){
         return new GrantedAuthorityDefaults(securityConstants.getPrefix());
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(BibGestUserDetailService bibGestUserDetailService, PasswordEncoder passwordEncoder,BibGestUsernamePasswordAuthenticationProvider bibGestUsernamePasswordAuthenticationProvider){
+        ProviderManager providerManager=new ProviderManager(bibGestUsernamePasswordAuthenticationProvider);
+        providerManager.setEraseCredentialsAfterAuthentication(false);
+        return providerManager;
     }
 
 }
