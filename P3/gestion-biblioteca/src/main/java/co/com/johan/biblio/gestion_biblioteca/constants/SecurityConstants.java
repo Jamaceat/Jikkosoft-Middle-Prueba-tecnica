@@ -24,5 +24,7 @@ public class SecurityConstants {
     @NotBlank
     private String requestHeader;
 
+    @NotBlank
+    private String jwtSecret;
 
 }
