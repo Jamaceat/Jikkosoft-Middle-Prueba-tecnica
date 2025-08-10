@@ -1,7 +1,6 @@
 package co.com.johan.biblio.gestion_biblioteca.books.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +15,7 @@ import co.com.johan.biblio.gestion_biblioteca.books.dtos.request.RegisterBranchR
 import co.com.johan.biblio.gestion_biblioteca.books.entities.BranchEntity;
 import co.com.johan.biblio.gestion_biblioteca.books.services.BranchService;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
+import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.Response;
 
 @RestController
@@ -37,7 +37,7 @@ public class BranchController {
     public ResponseEntity<GeneralResponse> getMethodName(
             @RequestParam(name = "pageNumber", required = false, defaultValue = "1") Long pageNumber,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize) {
-       Page<BranchEntity> branches= branchService.getAllBranches(pageNumber, pageSize);
+       PaginationSimplified<BranchEntity> branches= branchService.getAllBranches(pageNumber, pageSize);
 
        return ResponseEntity.status(HttpStatus.OK)
                 .body(new Response<>(branches, HttpStatus.OK.toString(), "Sucursales obtenidas exitosamente"));

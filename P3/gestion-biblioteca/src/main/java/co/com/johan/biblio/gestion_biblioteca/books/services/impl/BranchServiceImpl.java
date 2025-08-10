@@ -11,7 +11,9 @@ import co.com.johan.biblio.gestion_biblioteca.books.dtos.request.RegisterBranchR
 import co.com.johan.biblio.gestion_biblioteca.books.entities.BranchEntity;
 import co.com.johan.biblio.gestion_biblioteca.books.repository.BranchRepository;
 import co.com.johan.biblio.gestion_biblioteca.books.services.BranchService;
+import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.utils.mappers.BranchMapper;
+import co.com.johan.biblio.gestion_biblioteca.utils.mappers.PaginationMapper;
 
 @Service
 public class BranchServiceImpl implements BranchService{
@@ -21,6 +23,9 @@ public class BranchServiceImpl implements BranchService{
 
     @Autowired
     BranchMapper branchMapper;
+
+    @Autowired
+    PaginationMapper paginationMapper;
 
 
     @Override
@@ -32,11 +37,13 @@ public class BranchServiceImpl implements BranchService{
     }
 
 
+    @SuppressWarnings("unchecked")
     @Override
-    public Page<BranchEntity> getAllBranches(Long pageNumber, Long pageSize) {
+    public PaginationSimplified<BranchEntity> getAllBranches(Long pageNumber, Long pageSize) {
        Pageable page=PageRequest.of(pageNumber.intValue()-1,pageSize.intValue(),Sort.by("name").ascending());
-        return branchRepository.findAll(page);
-
+       Page<BranchEntity> branches=branchRepository.findAll(page);
+       PaginationSimplified<BranchEntity> pagination=paginationMapper.pageToPaginationSimplified(branches);
+        return  pagination;
     }
     
 }
