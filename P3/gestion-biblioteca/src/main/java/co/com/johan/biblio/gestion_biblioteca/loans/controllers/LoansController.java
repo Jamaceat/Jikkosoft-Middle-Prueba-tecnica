@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
-import co.com.johan.biblio.gestion_biblioteca.dtos.response.Response;
 import co.com.johan.biblio.gestion_biblioteca.loans.entities.LoansEntity;
 import co.com.johan.biblio.gestion_biblioteca.loans.services.LoansService;
+import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
 
 
 
@@ -33,8 +33,7 @@ public ResponseEntity<GeneralResponse> getAllLoans(@RequestParam(name = "pageNum
         @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize) {
 
             PaginationSimplified<LoansEntity> loans = loansService.getAllLoans(pageNumber, pageSize);
-            return ResponseEntity.status(HttpStatus.OK).body(new Response<>(loans, HttpStatus.OK.toString(), "Prestamos obtenidos exitosamente"));
-    
+            return ResponseBuilder.of(loans, HttpStatus.OK , "Prestamos obtenidos exitosamente");
 }
 
 

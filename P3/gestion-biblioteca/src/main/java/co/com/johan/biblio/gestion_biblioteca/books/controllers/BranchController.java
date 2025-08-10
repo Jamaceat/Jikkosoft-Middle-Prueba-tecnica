@@ -16,7 +16,7 @@ import co.com.johan.biblio.gestion_biblioteca.books.entities.BranchEntity;
 import co.com.johan.biblio.gestion_biblioteca.books.services.BranchService;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
-import co.com.johan.biblio.gestion_biblioteca.dtos.response.Response;
+import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
 
 @RestController
 @RequestMapping(path = "/branch", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -29,8 +29,7 @@ public class BranchController {
     public ResponseEntity<GeneralResponse> registerBranch(@RequestBody RegisterBranchR registerBranchR) {
 
         BranchEntity branch = branchService.registerBranch(registerBranchR);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new Response<>(branch, HttpStatus.CREATED.toString(), "Sucursal creada exitosamente"));
+        return ResponseBuilder.of(branch, HttpStatus.CREATED, "Sucursal creada exitosamente");
     }
 
     @GetMapping("/all")
@@ -39,8 +38,7 @@ public class BranchController {
             @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize) {
        PaginationSimplified<BranchEntity> branches= branchService.getAllBranches(pageNumber, pageSize);
 
-       return ResponseEntity.status(HttpStatus.OK)
-                .body(new Response<>(branches, HttpStatus.OK.toString(), "Sucursales obtenidas exitosamente"));
+    return ResponseBuilder.of(branches, HttpStatus.OK, "Sucursales obtenidas exitosamente");
     }
 
 }
