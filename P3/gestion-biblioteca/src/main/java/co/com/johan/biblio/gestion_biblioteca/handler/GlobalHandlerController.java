@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.ErrorResponse;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
+import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
+import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
@@ -24,8 +26,9 @@ public class GlobalHandlerController {
         log.info("Especifico: {}",specifidMessage);  
         log.info("General: {}",generalMessage); 
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(specifidMessage));
+        return ResponseBuilder.ofError(HttpStatus.INTERNAL_SERVER_ERROR, specifidMessage);
     }
+
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<GeneralResponse> handlerException( AccessDeniedException exception){
@@ -34,7 +37,7 @@ public class GlobalHandlerController {
         log.info("Especifico: {}",specifidMessage);  
         log.info("General: {}",generalMessage); 
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(specifidMessage));
+        return ResponseBuilder.ofError(HttpStatus.FORBIDDEN, specifidMessage);
     }
 
 

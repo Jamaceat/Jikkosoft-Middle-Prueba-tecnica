@@ -1,5 +1,12 @@
 package co.com.johan.biblio.gestion_biblioteca.loans.dtos.request;
 
-public record RegisterLoansR(Long bookId,Long memberId) {
+import java.util.List;
+
+import org.springframework.validation.annotation.Validated;
+
+import jakarta.validation.constraints.NotEmpty;
+
+@Validated
+public record RegisterLoansR(@NotEmpty List<Long> booksId) {
     
 }

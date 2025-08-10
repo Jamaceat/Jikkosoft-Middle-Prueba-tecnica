@@ -2,11 +2,18 @@ package co.com.johan.biblio.gestion_biblioteca.loans.entities;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import co.com.johan.biblio.gestion_biblioteca.loans.dtos.LoanStateEnum;
+import co.com.johan.biblio.gestion_biblioteca.utils.converters.LoanStateEnumType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,7 +30,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class LoansEntity {
+public class LoanEntity {
 
     @Id    
     @Column(name = "id")
@@ -45,8 +52,10 @@ public class LoansEntity {
     @Column(name = "fecha_devolucion_real")
     private LocalDate actualReturnDate;
 
-    @Column(name = "estado")
-    private String state;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado",columnDefinition = "estado_prestamo")
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    private LoanStateEnum state;
     
 
 }
