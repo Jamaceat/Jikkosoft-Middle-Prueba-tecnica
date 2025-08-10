@@ -23,10 +23,6 @@ public abstract class PaginationMapper {
     @Mapping(target = "currentPageIslast", source = "page.last")
     public abstract PaginationSimplified pageToPaginationSimplified(Page page);
 
-    public <T> T map(T source) {
-        return source;
-    }
-
     @Named("pageNumberCalculator")
     protected Integer pageNumberCalculator(Integer pageNumber) {
         return pageNumber + 1;
