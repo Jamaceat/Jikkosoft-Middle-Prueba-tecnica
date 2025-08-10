@@ -1,6 +1,10 @@
 package co.com.johan.biblio.gestion_biblioteca.books.entities;
 
+import java.util.List;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +12,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +39,9 @@ public class BranchEntity {
     @Column(name = "direccion")
     private String address;
 
-    
+    @OneToMany(mappedBy = "branch")
+    @JsonBackReference
+    private List<BookEntity> books;
+
 
 }

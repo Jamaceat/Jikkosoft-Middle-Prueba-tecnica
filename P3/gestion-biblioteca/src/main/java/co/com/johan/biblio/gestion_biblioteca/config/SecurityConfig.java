@@ -1,5 +1,7 @@
 package co.com.johan.biblio.gestion_biblioteca.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import co.com.johan.biblio.gestion_biblioteca.config.filters.JWTValidatorFilter;
@@ -30,15 +33,16 @@ public class SecurityConfig {
                         .requestMatchers("/members/login","/members/login/**").permitAll()
                         .requestMatchers("/members/signup","/members/signup/**").permitAll()
                         .requestMatchers("/branch/register","/branch/register/**").hasAnyRole(RoleEnum.SUPPLIER.toString(),RoleEnum.ADMIN.toString())
+                        .requestMatchers("/books/register","/books/register/**").hasAnyRole(RoleEnum.SUPPLIER.toString(),RoleEnum.ADMIN.toString())
+                        .requestMatchers("/loans/all","/loans/all/**").hasAnyRole(RoleEnum.ADMIN.toString())
+                        .requestMatchers("/parameters","/parameters**").hasAnyRole(RoleEnum.ADMIN.toString())
                         .anyRequest().authenticated()
                         )
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtValidatorFilter, BasicAuthenticationFilter.class)
                 // .httpBasic(Customizer.withDefaults())
                 .cors(AbstractHttpConfigurer::disable)
-                .csrf(AbstractHttpConfigurer::disable)
-
-        ;
+                .csrf(AbstractHttpConfigurer::disable);
 
         return security.build();
     }

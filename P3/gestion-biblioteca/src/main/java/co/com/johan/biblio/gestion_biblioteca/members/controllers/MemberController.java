@@ -25,7 +25,7 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<GeneralResponse> registerMember(@RequestBody RegisterMemberR memberRequest) {
+    public ResponseEntity<GeneralResponse> registerMember(@RequestBody RegisterMemberR memberRequest) throws Exception {
         MemberEntity member=  memberService.registerMember(memberRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(new Response<>(member,HttpStatus.CREATED.toString(),"Miembro creado exitosamente"));
     }

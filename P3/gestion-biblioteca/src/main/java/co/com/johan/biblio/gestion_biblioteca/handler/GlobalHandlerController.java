@@ -1,0 +1,41 @@
+package co.com.johan.biblio.gestion_biblioteca.handler;
+
+import java.nio.file.AccessDeniedException;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import co.com.johan.biblio.gestion_biblioteca.dtos.response.ErrorResponse;
+import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
+import lombok.extern.slf4j.Slf4j;
+
+@ControllerAdvice
+@Slf4j
+public class GlobalHandlerController {
+    
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<GeneralResponse> handlerException( Exception exception){
+        String specifidMessage = exception.getMessage()!=null?exception.getMessage():"";
+        String generalMessage=exception.getStackTrace().length>0?exception.getStackTrace()[0].toString():"";       
+        log.info("Especifico: {}",specifidMessage);  
+        log.info("General: {}",generalMessage); 
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(specifidMessage));
+    }
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<GeneralResponse> handlerException( AccessDeniedException exception){
+        String specifidMessage = exception.getMessage()!=null?exception.getMessage():"";
+        String generalMessage=exception.getStackTrace().length>0?exception.getStackTrace()[0].toString():"";       
+        log.info("Especifico: {}",specifidMessage);  
+        log.info("General: {}",generalMessage); 
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(specifidMessage));
+    }
+
+
+}

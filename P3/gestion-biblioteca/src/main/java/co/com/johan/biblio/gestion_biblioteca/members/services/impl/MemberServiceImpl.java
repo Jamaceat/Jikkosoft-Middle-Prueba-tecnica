@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import co.com.johan.biblio.gestion_biblioteca.constants.RoleEnum;
 import co.com.johan.biblio.gestion_biblioteca.constants.SecurityConstants;
 import co.com.johan.biblio.gestion_biblioteca.members.dtos.request.LoginRequestR;
 import co.com.johan.biblio.gestion_biblioteca.members.dtos.request.RegisterMemberR;
@@ -27,6 +29,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Service
 @Slf4j
@@ -50,9 +53,20 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     @Override
-    public MemberEntity registerMember(RegisterMemberR registerMemberR) {
+    public MemberEntity registerMember(RegisterMemberR registerMemberR) throws Exception {
 
         MemberEntity member = memberMapper.memberPrepareEntity(registerMemberR);
+
+        if (!member.getRoles().stream()
+                .filter(role -> !role.getRolName().equals(securityConstants.getPrefix() + RoleEnum.USER.toString()))
+                .toList().isEmpty()) {
+            List<String> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                    .map(t -> t.getAuthority()).toList();
+            log.info("Authorities: {}", authorities);
+            if (!authorities.contains(securityConstants.getPrefix() + RoleEnum.ADMIN.toString()))
+                throw new Exception("Solo los admins pueden crear otro tipo de usuario diferente a USER");
+        }
+        ;
         member = memberRepository.save(member);
         return member;
     }

@@ -38,7 +38,7 @@ public class JWTValidatorFilter extends OncePerRequestFilter {
         String jwt = request.getHeader(securityConstants.getRequestHeader());
         String secret = securityConstants.getJwtSecret();
         SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        if (!jwt.startsWith("Bearer ") || Objects.isNull(jwt)) {
+        if (Objects.isNull(jwt) || !jwt.startsWith("Bearer ")  ) {
             throw new BadCredentialsException("Token invalido");
         }
         jwt = jwt.replaceFirst("Bearer ", "");
@@ -64,7 +64,7 @@ public class JWTValidatorFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getServletPath().contains("/login");
+        return request.getServletPath().contains("/login") || request.getServletPath().contains("/signup");
     }
 
 }
