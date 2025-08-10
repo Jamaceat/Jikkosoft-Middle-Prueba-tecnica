@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import co.com.johan.biblio.gestion_biblioteca.config.filters.JWTValidatorFilter;
+import co.com.johan.biblio.gestion_biblioteca.constants.RoleEnum;
 import co.com.johan.biblio.gestion_biblioteca.constants.SecurityConstants;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +29,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/members/login","/members/login/**").permitAll()
                         .requestMatchers("/members/signup","/members/signup/**").permitAll()
+                        .requestMatchers("/branch/register","/branch/register/**").hasAnyRole(RoleEnum.SUPPLIER.toString(),RoleEnum.ADMIN.toString())
                         .anyRequest().authenticated()
                         )
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
