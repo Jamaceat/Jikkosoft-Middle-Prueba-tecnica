@@ -32,6 +32,7 @@ CREATE TABLE public.miembros (
 );
 
 
+
 -- ========= CREACION DE TABLAS DEPENDIENTES =========
 
 
@@ -41,7 +42,7 @@ CREATE TABLE public.libros (
     autor VARCHAR(150),
     ano_publicacion INT,
     genero VARCHAR(50),
-    sucursal_id INT,
+    sucursal_id INT NOT NULL,
     cantidad_total INT NOT NULL,
     cantidad_disponible INT NOT NULL,
     fecha_registro TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -81,7 +82,7 @@ CREATE TABLE public.prestamos (
     id BIGSERIAL PRIMARY KEY,
     libro_id BIGINT NOT NULL,
     miembro_id BIGINT NOT NULL,
-    fecha_prestamo DATE NOT NULL DEFAULT CURRENT_DATE,
+    fecha_prestamo DATE NOT NULL,
     fecha_devolucion_esperada DATE NOT NULL,
     fecha_devolucion_real DATE,
     estado public.estado_prestamo NOT NULL,
@@ -96,3 +97,12 @@ CREATE TABLE public.prestamos (
         REFERENCES public.miembros(id)
         ON DELETE RESTRICT 
 );
+
+
+CREATE TABLE public.parametros (
+    id SERIAL PRIMARY KEY,
+    nombre_parametro VARCHAR(100) NOT NULL UNIQUE,
+    valor_parametro VARCHAR(255) NOT NULL
+);
+
+

@@ -54,3 +54,5 @@ WHERE NOT EXISTS (
     WHERE miembro_id = (SELECT id FROM public.miembros WHERE email = 'supplier@biblioteca.com')
     AND rol_id = (SELECT id FROM public.roles WHERE nombre_rol = 'ROLE_SUPPLIER')
 );
+
+INSERT INTO public.parametros (nombre_parametro, valor_parametro) VALUES ('PRESTAMO_DIAS_HASTA_RETORNO', '15');
