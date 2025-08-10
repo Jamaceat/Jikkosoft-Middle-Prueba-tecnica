@@ -1,6 +1,5 @@
 package co.com.johan.biblio.gestion_biblioteca.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,26 +11,28 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import co.com.johan.biblio.gestion_biblioteca.config.filters.JWTValidatorFilter;
 import co.com.johan.biblio.gestion_biblioteca.constants.SecurityConstants;
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j
 public class SecurityConfig {
-    @Autowired
-    SecurityConstants securityConstants;
+
     
  @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity security, JWTValidatorFilter jwtValidatorFilter) throws Exception {
         security
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/bibgest/v1/login","/bibgest/v1/login/**").permitAll()
-                        .requestMatchers("/bibgest/v1/signup","/bibgest/v1/signup/**").permitAll()
-                        .anyRequest().permitAll())
+                        .requestMatchers("/members/login","/members/login/**").permitAll()
+                        .requestMatchers("/members/signup","/members/signup/**").permitAll()
+                        .anyRequest().authenticated()
+                        )
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtValidatorFilter, BasicAuthenticationFilter.class)
                 // .httpBasic(Customizer.withDefaults())
-                // .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
 
