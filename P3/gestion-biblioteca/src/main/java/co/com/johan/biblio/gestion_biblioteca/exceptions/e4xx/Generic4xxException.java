@@ -11,7 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Generic4xxException extends RuntimeException {
-    private String specifid;
     public Generic4xxException(String message) {
         super(message);
     }

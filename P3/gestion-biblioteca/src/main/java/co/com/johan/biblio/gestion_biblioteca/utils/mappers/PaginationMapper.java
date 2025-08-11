@@ -20,7 +20,7 @@ public abstract class PaginationMapper {
     @Mapping(target = "offsetElement", source = "page.pageable.offset")
     @Mapping(target = "currentPageIsEmpty", source = "empty")
     @Mapping(target = "currentPageIsFirst", source = "first")
-    @Mapping(target = "currentPageIslast", source = "page.last")
+    @Mapping(target = "currentPageIsLast", source = "page.last")
     public abstract PaginationSimplified pageToPaginationSimplified(Page page);
 
     @Named("pageNumberCalculator")

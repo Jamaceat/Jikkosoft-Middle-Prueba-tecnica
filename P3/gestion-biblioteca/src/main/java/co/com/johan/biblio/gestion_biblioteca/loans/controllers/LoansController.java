@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,7 @@ import co.com.johan.biblio.gestion_biblioteca.loans.dtos.request.ReturnLoansR;
 import co.com.johan.biblio.gestion_biblioteca.loans.entities.LoanEntity;
 import co.com.johan.biblio.gestion_biblioteca.loans.services.LoansService;
 import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import lombok.RequiredArgsConstructor;
 
 
 
@@ -30,10 +30,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping(value = "/loans", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class LoansController {
 
-@Autowired
-private LoansService loansService;
+
+private final LoansService loansService;
 
     
 @GetMapping("/all")

@@ -11,15 +11,17 @@ import co.com.johan.biblio.gestion_biblioteca.config.parameters.repository.Param
 import co.com.johan.biblio.gestion_biblioteca.config.parameters.services.ParametersService;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.utils.mappers.PaginationMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ParametersServiceImpl implements ParametersService {
 
-    @Autowired
-    ParameterRepository parameterRepository;
+    
+    private final ParameterRepository parameterRepository;
 
-    @Autowired
-    PaginationMapper paginationMapper;
+
+    private final PaginationMapper paginationMapper;
 
 
     @Override

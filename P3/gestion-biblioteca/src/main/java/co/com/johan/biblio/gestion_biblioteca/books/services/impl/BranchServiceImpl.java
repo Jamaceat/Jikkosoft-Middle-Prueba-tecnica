@@ -14,20 +14,21 @@ import co.com.johan.biblio.gestion_biblioteca.books.services.BranchService;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.utils.mappers.BranchMapper;
 import co.com.johan.biblio.gestion_biblioteca.utils.mappers.PaginationMapper;
+import lombok.RequiredArgsConstructor;
 
 
 @Service
-
+@RequiredArgsConstructor
 public class BranchServiceImpl implements BranchService{
 
-    @Autowired
-    BranchRepository branchRepository;
+    
+    private final BranchRepository branchRepository;
 
-    @Autowired
-    BranchMapper branchMapper;
+    
+    private final BranchMapper branchMapper;
 
-    @Autowired
-    PaginationMapper paginationMapper;
+    
+    private final PaginationMapper paginationMapper;
 
 
     @Override

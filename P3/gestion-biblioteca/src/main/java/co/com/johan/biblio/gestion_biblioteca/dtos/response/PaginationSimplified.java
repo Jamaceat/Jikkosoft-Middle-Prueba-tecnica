@@ -23,6 +23,6 @@ public class PaginationSimplified<T> {
     private Long offsetElement;
     private Boolean currentPageIsEmpty;
     private Boolean currentPageIsFirst;
-    private Boolean currentPageIslast;
+    private Boolean currentPageIsLast;
 
 }

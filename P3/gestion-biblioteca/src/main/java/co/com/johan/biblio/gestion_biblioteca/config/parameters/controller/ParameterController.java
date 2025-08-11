@@ -14,13 +14,15 @@ import co.com.johan.biblio.gestion_biblioteca.config.parameters.services.Paramet
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "/parameters", produces = { MediaType.APPLICATION_JSON_VALUE })
+@RequiredArgsConstructor
 public class ParameterController {
 
-    @Autowired
-    private ParametersService parametersService;
+    
+    private final ParametersService parametersService;
 
     @GetMapping("/parameter")
     public ResponseEntity<GeneralResponse> getParameterByName(@RequestParam(value = "name", required = true) String param) {

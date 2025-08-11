@@ -10,18 +10,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import lombok.RequiredArgsConstructor;
+
 
 
 
 @Component
-
+@RequiredArgsConstructor
 public class BibGestUsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 
-    @Autowired
-    private BibGestUserDetailService bibGestUserDetailService;
+    
+    private final BibGestUserDetailService bibGestUserDetailService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

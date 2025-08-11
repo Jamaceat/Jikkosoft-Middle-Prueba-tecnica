@@ -16,12 +16,13 @@ import org.springframework.stereotype.Component;
 import co.com.johan.biblio.gestion_biblioteca.members.entities.MemberEntity;
 import co.com.johan.biblio.gestion_biblioteca.members.entities.RoleEntity;
 import co.com.johan.biblio.gestion_biblioteca.members.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class BibGestUserDetailService  implements UserDetailsService {
 
-    @Autowired
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -17,16 +17,17 @@ import co.com.johan.biblio.gestion_biblioteca.books.services.BookService;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
+import lombok.RequiredArgsConstructor;
 
 
 
 
 @RestController
 @RequestMapping(path = "/books",produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequiredArgsConstructor
 public class BookController {
 
-    @Autowired
-    BookService bookService;
+    private final BookService bookService;
 
 
 

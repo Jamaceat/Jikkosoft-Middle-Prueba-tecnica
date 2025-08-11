@@ -17,13 +17,15 @@ import co.com.johan.biblio.gestion_biblioteca.books.services.BranchService;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/branch", produces = { MediaType.APPLICATION_JSON_VALUE })
+@RequiredArgsConstructor
 public class BranchController {
 
-    @Autowired
-    private BranchService branchService;
+
+    private final BranchService branchService;
 
     @PostMapping("/register")
     public ResponseEntity<GeneralResponse> registerBranch(@RequestBody RegisterBranchR registerBranchR) {

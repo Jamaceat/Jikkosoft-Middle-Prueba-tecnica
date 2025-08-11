@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
+import co.com.johan.biblio.gestion_biblioteca.exceptions.e4xx.ConflictException;
+import co.com.johan.biblio.gestion_biblioteca.exceptions.e4xx.InvalidRolesException;
 import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,6 +51,30 @@ public class GlobalHandlerController {
 
         return ResponseBuilder.ofError(HttpStatus.BAD_REQUEST, specifidMessage);
     }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ConflictException.class)
+    public ResponseEntity<GeneralResponse> handlerException( ConflictException exception){
+        String specifidMessage = exception.getMessage()!=null?exception.getMessage():"";
+        String generalMessage=exception.getStackTrace().length>0?exception.getStackTrace()[0].toString():"";       
+        log.info("Especifico: {}",specifidMessage);  
+        log.info("General: {}",generalMessage); 
+
+        return ResponseBuilder.ofError(HttpStatus.CONFLICT, specifidMessage);
+    }
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(InvalidRolesException.class)
+    public ResponseEntity<GeneralResponse> handlerException( InvalidRolesException exception){
+        String specifidMessage = exception.getMessage()!=null?exception.getMessage():"";
+        String generalMessage=exception.getStackTrace().length>0?exception.getStackTrace()[0].toString():"";       
+        log.info("Especifico: {}",specifidMessage);  
+        log.info("General: {}",generalMessage); 
+
+        return ResponseBuilder.ofError(HttpStatus.UNAUTHORIZED, specifidMessage);
+    }
+
+    
+    
 
     
 

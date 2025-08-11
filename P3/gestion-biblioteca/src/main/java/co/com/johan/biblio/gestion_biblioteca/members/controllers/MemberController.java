@@ -15,14 +15,16 @@ import co.com.johan.biblio.gestion_biblioteca.members.dtos.request.RegisterMembe
 import co.com.johan.biblio.gestion_biblioteca.members.entities.MemberEntity;
 import co.com.johan.biblio.gestion_biblioteca.members.services.MemberService;
 import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
+import lombok.RequiredArgsConstructor;
 
 
 @RestController
 @RequestMapping(value = "/members", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class MemberController {
     
-    @Autowired
-    private MemberService memberService;
+    
+    private final MemberService memberService;
 
     @PostMapping("/signup")
     public ResponseEntity<GeneralResponse> registerMember(@RequestBody RegisterMemberR memberRequest) throws Exception {

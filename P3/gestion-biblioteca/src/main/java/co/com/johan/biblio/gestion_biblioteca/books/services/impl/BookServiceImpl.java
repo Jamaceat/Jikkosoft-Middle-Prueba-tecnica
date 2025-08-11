@@ -16,21 +16,23 @@ import co.com.johan.biblio.gestion_biblioteca.books.services.BookService;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.utils.mappers.BookMapper;
 import co.com.johan.biblio.gestion_biblioteca.utils.mappers.PaginationMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class BookServiceImpl implements BookService{
 
-    @Autowired
-    BookRepository bookRepository;
+    
+    private final BookRepository bookRepository;
 
-    @Autowired
-    BranchRepository branchRepository;
+    
+    private final BranchRepository branchRepository;
 
-    @Autowired
-    PaginationMapper paginationMapper;
+    
+    private final PaginationMapper paginationMapper;
 
-    @Autowired
-    BookMapper bookMapper;
+    
+    private final BookMapper bookMapper;
 
 
     @SuppressWarnings("unchecked")

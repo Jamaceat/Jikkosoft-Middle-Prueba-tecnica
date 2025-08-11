@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import co.com.johan.biblio.gestion_biblioteca.constants.RoleEnum;
 import co.com.johan.biblio.gestion_biblioteca.constants.SecurityConstants;
+import co.com.johan.biblio.gestion_biblioteca.exceptions.e4xx.InvalidRolesException;
 import co.com.johan.biblio.gestion_biblioteca.members.dtos.request.LoginRequestR;
 import co.com.johan.biblio.gestion_biblioteca.members.dtos.request.RegisterMemberR;
 import co.com.johan.biblio.gestion_biblioteca.members.entities.MemberEntity;
@@ -28,24 +29,26 @@ import co.com.johan.biblio.gestion_biblioteca.utils.mappers.MemberMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    @Autowired
-    private MemberMapper memberMapper;
+    
+    private final MemberMapper memberMapper;
 
-    @Autowired
-    private MemberRepository memberRepository;
+    
+    private final MemberRepository memberRepository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private SecurityConstants securityConstants;
+    
+    private final SecurityConstants securityConstants;
 
     private static String EMAIL_FIELD = "email";
 
@@ -63,10 +66,10 @@ public class MemberServiceImpl implements MemberService {
             List<String> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
                     .map(t -> t.getAuthority()).toList();
             log.info("Authorities: {}", authorities);
-            if (!authorities.contains(securityConstants.getPrefix() + RoleEnum.ADMIN.toString()))
-                throw new Exception("Solo los admins pueden crear otro tipo de usuario diferente a USER");
+            if (authorities.contains(securityConstants.getPrefix() + RoleEnum.ADMIN.toString()))
+                throw new InvalidRolesException("Solo los admins pueden crear otro tipo de usuario diferente a USER");
         }
-        ;
+        
         member = memberRepository.save(member);
         return member;
     }
