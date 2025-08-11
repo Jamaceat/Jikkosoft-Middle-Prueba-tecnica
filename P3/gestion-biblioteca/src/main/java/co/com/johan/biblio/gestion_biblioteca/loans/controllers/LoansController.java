@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.GeneralResponse;
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.loans.dtos.request.RegisterLoansR;
+import co.com.johan.biblio.gestion_biblioteca.loans.dtos.request.ReturnLoansR;
 import co.com.johan.biblio.gestion_biblioteca.loans.entities.LoanEntity;
 import co.com.johan.biblio.gestion_biblioteca.loans.services.LoansService;
 import co.com.johan.biblio.gestion_biblioteca.utils.response.ResponseBuilder;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -39,6 +43,13 @@ public ResponseEntity<GeneralResponse> getAllLoans(@RequestParam(name = "pageNum
             PaginationSimplified<LoanEntity> loans = loansService.getAllLoans(pageNumber, pageSize);
             return ResponseBuilder.of(loans, HttpStatus.OK , "Prestamos obtenidos exitosamente");
 }
+@GetMapping("/member/all")
+public ResponseEntity<GeneralResponse> getAllLoansByUser(@RequestParam(name = "pageNumber", required = false, defaultValue = "1") Long pageNumber,
+        @RequestParam(name = "pageSize", required = false, defaultValue = "10") Long pageSize) {
+
+            PaginationSimplified<LoanEntity> loans = loansService.getAllLoansByUser(pageNumber, pageSize);
+            return ResponseBuilder.of(loans, HttpStatus.OK , "Prestamos obtenidos exitosamente");
+}
 
 
 @PostMapping("/register/list")
@@ -49,5 +60,9 @@ public ResponseEntity<GeneralResponse> postLoansByUser(@RequestBody RegisterLoan
 }
 
 
-
+@PutMapping("/return/list")
+public ResponseEntity<GeneralResponse> putMethodName( @RequestBody ReturnLoansR loans) throws BadRequestException {
+    List<LoanEntity> result= loansService.returnLoans(loans);
+    return ResponseBuilder.of(result,HttpStatus.NO_CONTENT, "Prestamos actualizados exitosamente");
+    }
 }

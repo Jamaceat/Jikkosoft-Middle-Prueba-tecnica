@@ -6,6 +6,7 @@ import org.apache.coyote.BadRequestException;
 
 import co.com.johan.biblio.gestion_biblioteca.dtos.response.PaginationSimplified;
 import co.com.johan.biblio.gestion_biblioteca.loans.dtos.request.RegisterLoansR;
+import co.com.johan.biblio.gestion_biblioteca.loans.dtos.request.ReturnLoansR;
 import co.com.johan.biblio.gestion_biblioteca.loans.entities.LoanEntity;
 
 public interface LoansService {
@@ -17,7 +18,7 @@ public interface LoansService {
 
     List<LoanEntity> registerLoans(RegisterLoansR loans) throws BadRequestException;
 
-    List<LoanEntity> returnLoans(RegisterLoansR loans);
+    List<LoanEntity> returnLoans(ReturnLoansR loans) throws BadRequestException;
 
 
 
