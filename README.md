@@ -8,4 +8,4 @@ Diseñar un esquema de base de datos para una plataforma de blogs sencilla. La p
     - Para ver la funcionalidad de este punto ejecutar las pruebas.
 
 3. Diseñe e implemente un sistema de gestión de bibliotecas sencillo con clases para libros, bibliotecas y miembros.
-    - Importar en postman la colección para probar las funcionalidades
+    - Importar en postman la colección para probar las funcionalidades y ver la documentación de los endPoints y las respuestas
