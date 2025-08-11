@@ -122,7 +122,7 @@ public class LoansServiceImpl implements LoansService {
 
         List<CompletableFuture<LoanEntity>> mapFutures = books.stream()
                 .map(book -> CompletableFuture
-                        .supplyAsync(() -> loanMapper.registerLoanToEntity(userId, book.getId(), daysUntilReturn,book),
+                        .supplyAsync(() -> loanMapper.registerLoanToEntity(userId, book.getId(), daysUntilReturn, book),
                                 virtualThreadExecutor))
                 .collect(Collectors.toList());
 
@@ -169,9 +169,11 @@ public class LoansServiceImpl implements LoansService {
         }
 
         // define la fecha actual de devolucion
-        validLoans.parallelStream().forEach( validLoan-> validLoan.setActualReturnDate(LocalDate.now()));
-        validLoans.parallelStream().forEach( validLoan -> validLoan.setState(validLoan.getExpectedReturnDate().isBefore(validLoan.getActualReturnDate())?LoanStateEnum.LATE:LoanStateEnum.RETURNED));
-  
+        validLoans.parallelStream().forEach(validLoan -> validLoan.setActualReturnDate(LocalDate.now()));
+        validLoans.parallelStream()
+                .forEach(validLoan -> validLoan.setState(
+                        validLoan.getExpectedReturnDate().isBefore(validLoan.getActualReturnDate()) ? LoanStateEnum.LATE
+                                : LoanStateEnum.RETURNED));
 
         // guarda el estado de los prestamos
         List<LoanEntity> result = loanRepository.saveAll(validLoans);
