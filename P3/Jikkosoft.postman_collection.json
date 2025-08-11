@@ -1,0 +1,1760 @@
+{
+	"info": {
+		"_postman_id": "f8b214fc-ab05-496c-ba43-1f84dc4187fb",
+		"name": "Jikkosoft",
+		"description": "Bienvenidos!!\n\npara poder utilizar las peticiones primero ir al folder de **Auth** y correr cualquier login o ir a **Member** y registrarte y despues hacer el login, el token se añadira a la cabecera automaticamente.\n\nconfigurar las **enviroments**\n\n|  |  |\n| --- | --- |\n| prefix | bibgest/v1/ |\n| port | :8080 |\n| protocol | http |\n| ip | localhost |\n| authToken |  |\n\n**authToken** se asigna cada vez que se corre un **login**",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22819811"
+	},
+	"item": [
+		{
+			"name": "Branch",
+			"item": [
+				{
+					"name": "get all branch",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/branch/all?pageNumber=1",
+							"path": [
+								"branch",
+								"all"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "/branch/all?pageNumber=2",
+									"path": [
+										"branch",
+										"all"
+									],
+									"query": [
+										{
+											"key": "pageNumber",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 03:40:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"content\": [\n            {\n                \"id\": 10,\n                \"name\": \"Biblioteca de sincelejo9\",\n                \"address\": \"Carrera 1 #2-3\"\n            }\n        ],\n        \"pageNumber\": 2,\n        \"pageSize\": 10,\n        \"currentPageElements\": 1,\n        \"totalPages\": 2,\n        \"totalElements\": 11,\n        \"offsetElement\": 10,\n        \"currentPageIsEmpty\": false,\n        \"currentPageIsFirst\": false,\n        \"currentPageIslast\": true\n    },\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Sucursales obtenidas exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Branch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Biblioteca de sincelejo\",\r\n    \"address\": \"Carrera 1 #2-3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/branch/register",
+							"path": [
+								"branch",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Biblioteca de sincelejo\",\r\n    \"address\": \"Carrera 1 #2-3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/branch/register",
+									"path": [
+										"branch",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 02:06:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"id\": 1,\n        \"name\": \"Biblioteca de sincelejo\",\n        \"address\": \"Carrera 1 #2-3\"\n    },\n    \"httpStatus\": \"201 CREATED\",\n    \"message\": \"Sucursal creada exitosamente\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Member",
+			"item": [
+				{
+					"name": "register ADMIN member",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John ant 2\",\r\n    \"email\":\"admin2@biblioteca.com\",\r\n    \"phone\":\"+573004450638\",\r\n    \"password\":\"1234\",\r\n    \"roles\":[\"ADMIN\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/members/signup",
+							"path": [
+								"members",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"John ant 2\",\r\n    \"email\":\"admin2@biblioteca.com\",\r\n    \"phone\":\"+573004450638\",\r\n    \"password\":\"1234\",\r\n    \"roles\":[\"ADMIN\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/members/signup",
+									"path": [
+										"members",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 15:22:00 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"id\": 4,\n        \"name\": \"John ant 2\",\n        \"email\": \"admin2@biblioteca.com\",\n        \"phone\": \"+573004450638\",\n        \"password\": \"$2a$10$qMPzO9qVsIpbPvmccBolVu27ZcFD3Hxl.Wg8YljS1w2fRR.o3OKsy\",\n        \"signUpDate\": \"2025-08-11\",\n        \"updateDate\": \"2025-08-11\",\n        \"roles\": [\n            {\n                \"id\": 1,\n                \"rolName\": \"ROLE_ADMIN\",\n                \"description\": \"Rol con permisos totales para gestionar el sistema.\"\n            }\n        ]\n    },\n    \"httpStatus\": \"201 CREATED\",\n    \"message\": \"Miembro creado exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "register User Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John ant 2\",\r\n    \"email\":\"user2@biblioteca.com\",\r\n    \"phone\":\"+573004450638\",\r\n    \"password\":\"1234\",\r\n    \"roles\":[\"USER\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/members/signup",
+							"path": [
+								"members",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"John ant 2\",\r\n    \"email\":\"user2@biblioteca.com\",\r\n    \"phone\":\"+573004450638\",\r\n    \"password\":\"1234\",\r\n    \"roles\":[\"USER\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/members/signup",
+									"path": [
+										"members",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 15:23:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"id\": 5,\n        \"name\": \"John ant 2\",\n        \"email\": \"user2@biblioteca.com\",\n        \"phone\": \"+573004450638\",\n        \"password\": \"$2a$10$kGhdhCtRSmSVYcme/IKMNuzwQTdI6FHH3RaGlZhgUbP/8JBMD4A4a\",\n        \"signUpDate\": \"2025-08-11\",\n        \"updateDate\": \"2025-08-11\",\n        \"roles\": [\n            {\n                \"id\": 2,\n                \"rolName\": \"ROLE_USER\",\n                \"description\": \"Rol con permisos básicos para usuarios regulares.\"\n            }\n        ]\n    },\n    \"httpStatus\": \"201 CREATED\",\n    \"message\": \"Miembro creado exitosamente\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin@biblioteca.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/members/login",
+							"path": [
+								"members",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@biblioteca.com\",\r\n    \"password\":\"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/members/login",
+									"path": [
+										"members",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Aug 2025 22:42:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": \"eyJhbGciOiJIUzM4NCJ9.eyJpc3MiOiJCaWJHZXN0IiwiaWF0IjoxNzU0Nzc5MzI0LCJlbWFpbCI6ImFkbWluQGJpYmxpb3RlY2EuY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiZXhwIjoxNzU0NzgxMTI0fQ.KUXPu3OZ3kGnF1ZLPGoUeRFtDsQsZVM26PXlbGmJQrGuAUdDltelIl0oJEwHVnLQ\",\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Miembro logueado exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"user@biblioteca.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/members/login",
+							"path": [
+								"members",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@biblioteca.com\",\r\n    \"password\":\"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/members/login",
+									"path": [
+										"members",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Aug 2025 22:42:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": \"eyJhbGciOiJIUzM4NCJ9.eyJpc3MiOiJCaWJHZXN0IiwiaWF0IjoxNzU0Nzc5MzI0LCJlbWFpbCI6ImFkbWluQGJpYmxpb3RlY2EuY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiZXhwIjoxNzU0NzgxMTI0fQ.KUXPu3OZ3kGnF1ZLPGoUeRFtDsQsZVM26PXlbGmJQrGuAUdDltelIl0oJEwHVnLQ\",\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Miembro logueado exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login supplier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"user@biblioteca.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/members/login",
+							"path": [
+								"members",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@biblioteca.com\",\r\n    \"password\":\"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/members/login",
+									"path": [
+										"members",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Aug 2025 22:42:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": \"eyJhbGciOiJIUzM4NCJ9.eyJpc3MiOiJCaWJHZXN0IiwiaWF0IjoxNzU0Nzc5MzI0LCJlbWFpbCI6ImFkbWluQGJpYmxpb3RlY2EuY29tIiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwiZXhwIjoxNzU0NzgxMTI0fQ.KUXPu3OZ3kGnF1ZLPGoUeRFtDsQsZVM26PXlbGmJQrGuAUdDltelIl0oJEwHVnLQ\",\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Miembro logueado exitosamente\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Puedes correr cualquier login que hay en esta carpeta para guardar el token automaticamente"
+		},
+		{
+			"name": "loans",
+			"item": [
+				{
+					"name": "get loan admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/loans/all",
+							"path": [
+								"loans",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/loans/all",
+									"path": [
+										"loans",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 23:14:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"content\": [\n            {\n                \"id\": 1,\n                \"bookId\": 1,\n                \"memberId\": 1,\n                \"loanDate\": \"2025-08-10\",\n                \"expectedReturnDate\": \"2025-08-25\",\n                \"actualReturnDate\": null,\n                \"state\": \"TAKEN\"\n            },\n            {\n                \"id\": 2,\n                \"bookId\": 1,\n                \"memberId\": 1,\n                \"loanDate\": \"2025-08-10\",\n                \"expectedReturnDate\": \"2025-08-25\",\n                \"actualReturnDate\": null,\n                \"state\": \"TAKEN\"\n            },\n            {\n                \"id\": 3,\n                \"bookId\": 1,\n                \"memberId\": 1,\n                \"loanDate\": \"2025-08-10\",\n                \"expectedReturnDate\": \"2025-08-25\",\n                \"actualReturnDate\": null,\n                \"state\": \"TAKEN\"\n            }\n        ],\n        \"pageNumber\": 1,\n        \"pageSize\": 10,\n        \"currentPageElements\": 3,\n        \"totalPages\": 1,\n        \"totalElements\": 3,\n        \"offsetElement\": 0,\n        \"currentPageIsEmpty\": false,\n        \"currentPageIsFirst\": true,\n        \"currentPageIslast\": true\n    },\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Prestamos obtenidos exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get loan by user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/loans/member/all",
+							"path": [
+								"loans",
+								"member",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/loans/all",
+									"path": [
+										"loans",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 23:14:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"content\": [\n            {\n                \"id\": 1,\n                \"bookId\": 1,\n                \"memberId\": 1,\n                \"loanDate\": \"2025-08-10\",\n                \"expectedReturnDate\": \"2025-08-25\",\n                \"actualReturnDate\": null,\n                \"state\": \"TAKEN\"\n            },\n            {\n                \"id\": 2,\n                \"bookId\": 1,\n                \"memberId\": 1,\n                \"loanDate\": \"2025-08-10\",\n                \"expectedReturnDate\": \"2025-08-25\",\n                \"actualReturnDate\": null,\n                \"state\": \"TAKEN\"\n            },\n            {\n                \"id\": 3,\n                \"bookId\": 1,\n                \"memberId\": 1,\n                \"loanDate\": \"2025-08-10\",\n                \"expectedReturnDate\": \"2025-08-25\",\n                \"actualReturnDate\": null,\n                \"state\": \"TAKEN\"\n            }\n        ],\n        \"pageNumber\": 1,\n        \"pageSize\": 10,\n        \"currentPageElements\": 3,\n        \"totalPages\": 1,\n        \"totalElements\": 3,\n        \"offsetElement\": 0,\n        \"currentPageIsEmpty\": false,\n        \"currentPageIsFirst\": true,\n        \"currentPageIslast\": true\n    },\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Prestamos obtenidos exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "post Loan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"booksId\": [\r\n        1,1,2,2,2\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/loans/register/list",
+							"path": [
+								"loans",
+								"register",
+								"list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 CREATED",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"booksId\": [\r\n        1\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/loans/register/list",
+									"path": [
+										"loans",
+										"register",
+										"list"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 22:53:28 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": [\n        {\n            \"id\": 3,\n            \"bookId\": 1,\n            \"memberId\": 1,\n            \"loanDate\": \"2025-08-10\",\n            \"expectedReturnDate\": \"2025-08-25\",\n            \"actualReturnDate\": null,\n            \"state\": \"TAKEN\"\n        }\n    ],\n    \"httpStatus\": \"201 CREATED\",\n    \"message\": \"Prestamos registrados exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "put  return Loans",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"LoanIds\": [\r\n        7,8\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/loans/return/list",
+							"path": [
+								"loans",
+								"return",
+								"list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 CREATED",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"booksId\": [\r\n        1\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/loans/register/list",
+									"path": [
+										"loans",
+										"register",
+										"list"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 22:53:28 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": [\n        {\n            \"id\": 3,\n            \"bookId\": 1,\n            \"memberId\": 1,\n            \"loanDate\": \"2025-08-10\",\n            \"expectedReturnDate\": \"2025-08-25\",\n            \"actualReturnDate\": null,\n            \"state\": \"TAKEN\"\n        }\n    ],\n    \"httpStatus\": \"201 CREATED\",\n    \"message\": \"Prestamos registrados exitosamente\"\n}"
+						},
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"LoanIds\": [\r\n        1,100\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/loans/return/list",
+									"path": [
+										"loans",
+										"return",
+										"list"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 04:57:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorMessage\": \"Invalid LoansIds: 100\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "get All Books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/books/all",
+							"path": [
+								"books",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "/books/all",
+									"path": [
+										"books",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 17:33:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"content\": [\n            {\n                \"id\": 1,\n                \"title\": \"100 años de seriedad\",\n                \"author\": \"Example Author\",\n                \"releaseYear\": 2023,\n                \"genre\": \"Example Genre\",\n                \"totalAmount\": 12,\n                \"availableAmount\": 12,\n                \"registerDate\": \"2025-08-10\",\n                \"updateDate\": \"2025-08-10\",\n                \"branch\": {\n                    \"id\": 1,\n                    \"name\": \"Biblioteca de sincelejo11\",\n                    \"address\": \"Carrera 1 #2-3\"\n                }\n            }\n        ],\n        \"pageNumber\": 1,\n        \"pageSize\": 10,\n        \"currentPageElements\": 1,\n        \"totalPages\": 1,\n        \"totalElements\": 1,\n        \"offsetElement\": 0,\n        \"currentPageIsEmpty\": false,\n        \"currentPageIsFirst\": true,\n        \"currentPageIslast\": true\n    },\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Libros obtenidos exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "post Book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Mangooo\",\r\n    \"author\": \"Example Author\",\r\n    \"releaseYear\": \"2023\",\r\n    \"genre\": \"Example Genre\",\r\n    \"totalAmount\": 12,\r\n    \"branchId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/books/register",
+							"path": [
+								"books",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"100 años de seriedad\",\r\n    \"author\": \"Example Author\",\r\n    \"releaseYear\": \"2023\",\r\n    \"genre\": \"Example Genre\",\r\n    \"totalAmount\": 12,\r\n    \"branchId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "/books/register",
+									"path": [
+										"books",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 13:14:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"id\": 2,\n        \"title\": \"100 años de seriedad\",\n        \"author\": \"Example Author\",\n        \"releaseYear\": 2023,\n        \"genre\": \"Example Genre\",\n        \"totalAmount\": 12,\n        \"availableAmount\": 12,\n        \"registerDate\": \"2025-08-10\",\n        \"updateDate\": \"2025-08-10\",\n        \"branch\": {\n            \"id\": 1,\n            \"name\": \"Biblioteca de sincelejo\",\n            \"address\": \"Carrera 1 #2-3\"\n        }\n    },\n    \"httpStatus\": \"201 CREATED\",\n    \"message\": \"Libro registrado exitosamente\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Parameters",
+			"item": [
+				{
+					"name": "Parameter By name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/parameters/parameter?name=PRESTAMO_DIAS_HASTA_RETORNO",
+							"path": [
+								"parameters",
+								"parameter"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "PRESTAMO_DIAS_HASTA_RETORNO"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "/parameters/parameter?name=PRESTAMO_DIAS_HASTA_RETORNO",
+									"path": [
+										"parameters",
+										"parameter"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "PRESTAMO_DIAS_HASTA_RETORNO"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 17:11:57 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"id\": 1,\n        \"name\": \"PRESTAMO_DIAS_HASTA_RETORNO\",\n        \"value\": \"15\"\n    },\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Parametro obtenido exitosamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "all Parameters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "/parameters/all",
+							"path": [
+								"parameters",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "/parameters/all",
+									"path": [
+										"parameters",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 10 Aug 2025 17:11:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"content\": [\n            {\n                \"id\": 1,\n                \"name\": \"PRESTAMO_DIAS_HASTA_RETORNO\",\n                \"value\": \"15\"\n            }\n        ],\n        \"pageNumber\": 1,\n        \"pageSize\": 10,\n        \"currentPageElements\": 1,\n        \"totalPages\": 1,\n        \"totalElements\": 1,\n        \"offsetElement\": 0,\n        \"currentPageIsEmpty\": false,\n        \"currentPageIsFirst\": true,\n        \"currentPageIslast\": true\n    },\n    \"httpStatus\": \"200 OK\",\n    \"message\": \"Parametros obtenidos exitosamente\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "actuator",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/actuator",
+					"path": [
+						"actuator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actuator health",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/actuator/health",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.url=pm.environment.get(\"protocol\")+\"://\"+pm.environment.get(\"ip\")+pm.environment.get(\"port\")+\"/\"+pm.environment.get(\"prefix\")+pm.request.url.path.join(\"/\")+(pm.request.url.getQueryString()?\"?\"+pm.request.url.getQueryString():\"\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"if(pm.request.url.getPath().endsWith(\"/members/login\")){\r",
+					"\r",
+					"    let token =\"Bearer \"\r",
+					"    console.log(\"Body :\"+JSON.stringify(pm.response.json()))\r",
+					"    let response =pm.response.json()\r",
+					"    \r",
+					"    token+=response[\"result\"]\r",
+					"\r",
+					"    pm.environment.set(\"authToken\",token)\r",
+					"\r",
+					"}"
+				]
+			}
+		}
+	]
+}

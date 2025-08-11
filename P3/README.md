@@ -1,5 +1,7 @@
 # Información util
 
+la documentacion completa esta en el json exportable al postman
+
 * Usuario admin
 
     **Correo:**
